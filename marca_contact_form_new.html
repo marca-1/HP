@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MARCA｜生産者・設置店舗 お問い合わせフォーム</title>
+  <meta name="description" content="MARCAの生産者登録・野菜自販機設置相談フォームです。和歌山市を中心に、岩出市・紀の川市方面へ展開予定です。">
+  <style>
+    :root {
+      --bg: #f8f5ee;
+      --paper: #ffffff;
+      --ink: #263027;
+      --muted: #667060;
+      --green: #3f6f43;
+      --green-dark: #2d5330;
+      --green-soft: #e8f1e3;
+      --line: #d9dfd0;
+      --accent: #c68a3b;
+      --danger: #9c3b2f;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.75;
+    }
+    a { color: inherit; }
+    .wrap {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+    header {
+      background: rgba(248,245,238,.96);
+      border-bottom: 1px solid var(--line);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      gap: 16px;
+    }
+    .brand {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: .09em;
+      color: var(--green);
+      line-height: 1;
+    }
+    .sub-brand {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+    .header-contact {
+      font-size: 13px;
+      color: var(--muted);
+      text-align: right;
+    }
+    .hero {
+      padding: 54px 0 26px;
+      background:
+        radial-gradient(circle at 8% 8%, rgba(63,111,67,.14), transparent 28%),
+        radial-gradient(circle at 92% 18%, rgba(198,138,59,.12), transparent 30%);
+    }
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      font-size: 13px;
+      font-weight: 700;
+    }
+    h1 {
+      font-size: clamp(30px, 5vw, 48px);
+      line-height: 1.25;
+      margin: 0 0 14px;
+      letter-spacing: .02em;
+    }
+    .lead {
+      margin: 0;
+      max-width: 780px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+    .panel {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: 0 16px 38px rgba(38,48,39,.08);
+    }
+    .intro-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin: 28px 0 0;
+    }
+    .intro-card {
+      padding: 22px;
+    }
+    .intro-card h2 {
+      margin: 0 0 10px;
+      color: var(--green-dark);
+      font-size: 20px;
+    }
+    .intro-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+    main {
+      padding: 26px 0 58px;
+    }
+    .form-panel {
+      padding: clamp(20px, 4vw, 34px);
+    }
+    .form-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 24px;
+    }
+    .form-heading h2 {
+      margin: 0;
+      font-size: 28px;
+    }
+    .required-note {
+      color: var(--danger);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    form {
+      display: grid;
+      gap: 22px;
+    }
+    fieldset {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      margin: 0;
+      background: #fffdfa;
+    }
+    legend {
+      padding: 0 8px;
+      font-weight: 800;
+      color: var(--green-dark);
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 16px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+    }
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+    .req {
+      color: var(--danger);
+      font-weight: 900;
+      margin-left: 4px;
+    }
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid #cfd7c8;
+      border-radius: 12px;
+      padding: 12px 13px;
+      font: inherit;
+      background: #fff;
+      color: var(--ink);
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: 3px solid rgba(63,111,67,.18);
+      border-color: var(--green);
+    }
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+    .choice-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      margin-top: 6px;
+    }
+    .choice {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 0;
+    }
+    .choice input {
+      width: auto;
+      transform: translateY(1px);
+    }
+    .hint {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .privacy {
+      padding: 16px;
+      border-radius: 16px;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      font-size: 13px;
+    }
+    .submit-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    button {
+      appearance: none;
+      border: 0;
+      border-radius: 14px;
+      background: var(--green);
+      color: #fff;
+      padding: 15px 26px;
+      font-weight: 900;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 10px 22px rgba(63,111,67,.18);
+    }
+    button:hover {
+      background: var(--green-dark);
+    }
+    .small {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .footer {
+      padding: 32px 0 44px;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid var(--line);
+    }
+    @media (max-width: 760px) {
+      .header-inner, .form-heading {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .header-contact {
+        text-align: left;
+      }
+      .intro-grid, .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
+      }
+      .required-note {
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap header-inner">
+      <div>
+        <div class="brand">MARCA</div>
+        <div class="sub-brand">和歌山の野菜自販機｜生産者様・設置店舗様 募集中</div>
+      </div>
+      <div class="header-contact">
+        対象エリア：和歌山市中心<br>
+        展開予定：岩出市・紀の川市
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="badge-row">
+        <span class="badge">生産者登録のご相談</span>
+        <span class="badge">自販機設置のご相談</span>
+        <span class="badge">農園マイスター・ゼロマイル</span>
+      </div>
+      <h1>MARCA お問い合わせフォーム</h1>
+      <p class="lead">
+        野菜自販機への出荷をご希望の生産者様、店舗・施設への自販機設置をご検討の事業者様は、
+        下記フォームよりお問い合わせください。
+      </p>
+
+      <div class="intro-grid">
+        <div class="panel intro-card">
+          <h2>生産者様へ</h2>
+          <p>野菜の販路拡大、少量出荷、地域のお客様への販売機会づくりについてご相談いただけます。</p>
+        </div>
+        <div class="panel intro-card">
+          <h2>店舗・施設様へ</h2>
+          <p>店舗前・駐車場・施設入口などのスペースを活用した副収入づくりについてご相談いただけます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <div class="wrap">
+      <div class="panel form-panel">
+        <div class="form-heading">
+          <h2>お問い合わせ内容をご入力ください</h2>
+          <div class="required-note">※ 必須項目</div>
+        </div>
+
+        <form action="https://formsubmit.co/marca.info.japan@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="【MARCA】SNSフォームから新規お問い合わせ">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://marca-1.github.io/HP/marca_contact_thanks.html">
+          <input type="text" name="_honey" style="display:none">
+
+          <fieldset>
+            <legend>お問い合わせ区分</legend>
+            <label for="category">ご相談内容<span class="req">※</span></label>
+            <select id="category" name="お問い合わせ区分" required>
+              <option value="">選択してください</option>
+              <option value="生産者登録を希望">生産者登録を希望</option>
+              <option value="店舗・施設に自販機を設置したい">店舗・施設に自販機を設置したい</option>
+              <option value="生産者登録と自販機設置の両方を相談したい">両方を相談したい</option>
+              <option value="その他">その他</option>
+            </select>
+            <p class="hint">農家様は「生産者登録を希望」、店舗様は「自販機を設置したい」をお選びください。</p>
+          </fieldset>
+
+          <fieldset>
+            <legend>基本情報</legend>
+            <div class="grid-2">
+              <div>
+                <label for="name">お名前<span class="req">※</span></label>
+                <input id="name" name="お名前" type="text" autocomplete="name" required>
+              </div>
+              <div>
+                <label for="company">農園名・会社名・店舗名</label>
+                <input id="company" name="農園名・会社名・店舗名" type="text">
+              </div>
+              <div>
+                <label for="email">メールアドレス<span class="req">※</span></label>
+                <input id="email" name="メールアドレス" type="email" autocomplete="email" required>
+              </div>
+              <div>
+                <label for="tel">電話番号</label>
+                <input id="tel" name="電話番号" type="tel" autocomplete="tel">
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>所在地・対象エリア</legend>
+            <div class="grid-2">
+              <div>
+                <label for="area">所在地エリア<span class="req">※</span></label>
+                <select id="area" name="所在地エリア" required>
+                  <option value="">選択してください</option>
+                  <option value="和歌山市">和歌山市</option>
+                  <option value="岩出市">岩出市</option>
+                  <option value="紀の川市">紀の川市</option>
+                  <option value="その他 和歌山県内">その他 和歌山県内</option>
+                  <option value="その他">その他</option>
+                </select>
+              </div>
+              <div>
+                <label for="address">住所・設置候補地</label>
+                <input id="address" name="住所・設置候補地" type="text" autocomplete="street-address">
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>生産者様向け項目</legend>
+            <label>出荷できる商品・作物</label>
+            <div class="choice-row">
+              <label class="choice"><input type="checkbox" name="出荷できる商品" value="葉物野菜">葉物野菜</label>
+              <label class="choice"><input type="checkbox" name="出荷できる商品" value="根菜類">根菜類</label>
+              <label class="choice"><input type="checkbox" name="出荷できる商品" value="果菜類">果菜類</label>
+              <label class="choice"><input type="checkbox" name="出荷できる商品" value="果物">果物</label>
+              <label class="choice"><input type="checkbox" name="出荷できる商品" value="加工品">加工品</label>
+              <label class="choice"><input type="checkbox" name="出荷できる商品" value="その他">その他</label>
+            </div>
+            <div class="grid-2" style="margin-top:16px;">
+              <div>
+                <label for="volume">出荷量の目安</label>
+                <input id="volume" name="出荷量の目安" type="text" placeholder="例：週2回、1回10袋程度">
+              </div>
+              <div>
+                <label for="season">出荷可能時期</label>
+                <input id="season" name="出荷可能時期" type="text" placeholder="例：通年、7月〜9月など">
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>店舗・施設様向け項目</legend>
+            <div class="grid-2">
+              <div>
+                <label for="place">設置候補スペース</label>
+                <select id="place" name="設置候補スペース">
+                  <option value="">選択してください</option>
+                  <option value="店舗前">店舗前</option>
+                  <option value="駐車場">駐車場</option>
+                  <option value="施設入口">施設入口</option>
+                  <option value="屋内スペース">屋内スペース</option>
+                  <option value="その他">その他</option>
+                </select>
+              </div>
+              <div>
+                <label for="power">電源の有無</label>
+                <select id="power" name="電源の有無">
+                  <option value="">選択してください</option>
+                  <option value="あり">あり</option>
+                  <option value="なし">なし</option>
+                  <option value="確認中">確認中</option>
+                </select>
+              </div>
+            </div>
+            <div class="grid-2" style="margin-top:16px;">
+              <div>
+                <label for="people">人通り・来店数の目安</label>
+                <input id="people" name="人通り・来店数の目安" type="text" placeholder="例：平日100人前後、週末多めなど">
+              </div>
+              <div>
+                <label for="parking">駐車場</label>
+                <select id="parking" name="駐車場">
+                  <option value="">選択してください</option>
+                  <option value="あり">あり</option>
+                  <option value="なし">なし</option>
+                  <option value="近隣にあり">近隣にあり</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>その他</legend>
+            <label for="message">ご相談内容・ご質問</label>
+            <textarea id="message" name="ご相談内容・ご質問" placeholder="例：出荷条件を知りたい、設置費用を相談したい、自販機の機種について知りたい等"></textarea>
+          </fieldset>
+
+          <div class="privacy">
+            ご入力いただいた情報は、MARCAからのご連絡およびご相談内容の確認のために使用します。
+            営業目的の第三者提供は行いません。
+          </div>
+
+          <div class="submit-row">
+            <button type="submit">送信する</button>
+            <div class="small">送信後、担当者より内容を確認のうえご連絡いたします。</div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      MARCA｜和歌山市を中心に、地域密着型の野菜自販機運用を進めています。<br>
+      お問い合わせ先：marca.info.japan@gmail.com
+    </div>
+  </footer>
+</body>
+</html>
